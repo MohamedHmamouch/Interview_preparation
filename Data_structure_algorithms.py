@@ -310,15 +310,16 @@ def minimumLoss(price):
 
     l,r=0,1
 
-    price.sort()
+    new_price=price.copy()
+    new_price.sort(reverse=True)
 
-    while r<n:
+    while r<=(n-1):
 
-        if -price[r]+price[l]<min_loss:
+        if (new_price[l]-new_price[r])<min_loss and ((price.index(new_price[l])<price.index(new_price[r]))):
 
             min_loss=price[l]-price[r]
 
-            l+=1
+        l+=1
 
         r+=1
 
@@ -326,7 +327,7 @@ def minimumLoss(price):
 
 if __name__=='__main__':
 
-    print(minimumLoss([5,10,3]))
+    print(minimumLoss([5, 10, 3, 2, 7]))
 
 
 
