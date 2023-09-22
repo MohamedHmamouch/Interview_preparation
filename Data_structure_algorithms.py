@@ -291,26 +291,42 @@ def nonDivisibleSubset(k, s):
 
 def minimumLoss(price):
     # Write your code here
-    
-    i=0
+    # O(n^2)
+    # i=0
     min_loss=float('inf')
-    while i<=len(price)-2:
+    # while i<=len(price)-2:
         
-        for j in range(i+1,len(price)):
+    #     for j in range(i+1,len(price)):
             
-            if price[i]>price[j]:
+    #         if price[i]>price[j]:
                 
-                min_loss=min(min_loss,price[i]-price[j])
+    #             min_loss=min(min_loss,price[i]-price[j])
                 
-        i+=1
+    #     i+=1
         
+    # return min_loss
+
+    n=len(price)
+
+    l,r=0,1
+
+    price.sort()
+
+    while r<n:
+
+        if -price[r]+price[l]<min_loss:
+
+            min_loss=price[l]-price[r]
+
+            l+=1
+
+        r+=1
+
     return min_loss
-
-
 
 if __name__=='__main__':
 
-    print(minimumLoss([20 ,7 ,8 ,2 ,5]))
+    print(minimumLoss([5,10,3]))
 
 
 
