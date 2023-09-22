@@ -229,49 +229,88 @@ def extraLongFactorials(n):
        return n*extraLongFactorials(n-1)
     
 
-def absolutePermutation(n,k):
+
+def LargestPermutation(A,k):
+
+
+    index={} #element:index
+
+    for i in range(len(A)):
+
+        index[A[i]]=i
+
+    
+    i,swap=0,0
+    n=len(A)
+
+    while i <len(A) and swap<k:
+
+        #puisque les valeurs de A sont incrémenté par
+
+        #donc larget est de vérifier si A{i}<n-i
+
+        if A[i]<len(A)-i:
+
+            id=index[n-i]
+
+            A[i],A[id]=A[id],A[i]
+
+            index[n-i]=i
+            index[A[id]]=id
+
+            swap+=1
+
+        i+=1
+
+    return A
+
+
+def nonDivisibleSubset(k, s):
+    # Write your code here
+    repeated_count=[0]*k
+    
+    for i in s:
+        
+        remainder=i%k
+        
+        repeated_count[remainder]+=1
+    ans=min(repeated_count[0],1)
+    
+    if k%2==0:
+        
+        ans+=min(repeated_count[k//2],1)
+        
+    for i in range(1,k//2+1):
+        
+        if i!=k-i:
+            
+            ans+=max(repeated_count[i],repeated_count[k-i])
+            
+    return ans
+
+
+def minimumLoss(price):
     # Write your code here
     
-    
-    
-    pos=[]
-    
-    for i in range(1,n+1):
+    i=0
+    min_loss=float('inf')
+    while i<=len(price)-2:
         
-        pos.append(i)
+        for j in range(i+1,len(price)):
+            
+            if price[i]>price[j]:
+                
+                min_loss=min(min_loss,price[i]-price[j])
+                
+        i+=1
+        
+    return min_loss
 
-    element_to_index={}
 
-
-    for i in range(len(pos)):
-
-        element_to_index[pos[i]]=i+1
-
-    ans=[0]*len(pos)
-
-    
-
-    for l,_ in element_to_index.items():
-
-        element_to_index[l]=l-k-1
-
-    for l,v in element_to_index.items():
-
-        ans[v]=l
-
-    print(ans)
-    print(element_to_index)
-
-    for i in range(len(ans)):
-
-        if abs(ans[i]-(i+1))!=k:
-
-            return -1
-    return ans
 
 if __name__=='__main__':
 
-    print(absolutePermutation(10,1))
+    print(minimumLoss([20 ,7 ,8 ,2 ,5]))
 
 
 
