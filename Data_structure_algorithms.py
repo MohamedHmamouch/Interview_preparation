@@ -306,28 +306,84 @@ def minimumLoss(price):
         
     # return min_loss
 
+    # Write your code here
+    
     n=len(price)
+    
+    rp=price.copy()
+    
+    rp.sort(reverse=True)
+    
+    max_price=max(price)
+    
+    for i in range(n-1):
+        
+        if ((rp[i]-rp[i+1])<max_price and price.index(rp[i])<price.index(rp[i+1])):
+            
+            max_price=rp[i]-rp[i+1]
+            
+    return max_price
 
-    l,r=0,1
 
-    new_price=price.copy()
-    new_price.sort(reverse=True)
 
-    while r<=(n-1):
 
-        if (new_price[l]-new_price[r])<min_loss and ((price.index(new_price[l])<price.index(new_price[r]))):
+def highestValuePalindrome(s, k):
+    # Write your code here
 
-            min_loss=price[l]-price[r]
+    s=list(s)
+    
+    swap=0
+    if k==1:
+        
+        l,r=0,len(s)-1
+        
+        while l<r and swap<k:
+            
+            if s[l]!=s[r] and int(s[l])>int(s[r]):
+                
+                s[r]=s[l]
+                
+                swap+=1
+            elif s[l]!=s[r] and int(s[r])>int(s[l]):
+                
+                s[l]=s[r]
+                swap+=1
+            l+=1
+            r-=1
+                
+        if l==r and int(s[l])<9:
+            
+            s[l]='9'
+            
+    elif k>=2:
+        
+        swap=0
+        l,r=0,len(s)-1
+        while swap<k and l<r:
+            
+            if l==0 and r==len(s)-1:
+                
+                s[l]='9'
+                s[r]='9'
+                swap+=1
+            elif s[l]!=s[r] and int(s[r])>int(s[l]):
+                
+                s[l]=s[r]
+                swap+=1
 
-        l+=1
-
-        r+=1
-
-    return min_loss
+            elif s[l]!=s[r] and int(s[l])>int(s[r]):
+                
+                s[r]=s[l]
+                swap+=1
+                
+            l+=1
+            r-=1
+            
+    return ''.join(s) if s==s[::-1] else -1
 
 if __name__=='__main__':
 
-    print(minimumLoss([5, 10, 3, 2, 7]))
+    print(highestValuePalindrome("12321",1))
 
 
 
