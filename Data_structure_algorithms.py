@@ -327,59 +327,114 @@ def minimumLoss(price):
 
 
 
-def highestValuePalindrome(s, k):
-    # Write your code here
+def highestValuePalindrome(s, n,k):
 
-    s=list(s)
+
+    # https://gist.github.com/Shaddyjr/cedf4da886c35e43fbf422eb2149a50b : orginal code
     
-    swap=0
-    if k==1:
-        
-        l,r=0,len(s)-1
-        
-        while l<r and swap<k:
-            
-            if s[l]!=s[r] and int(s[l])>int(s[r]):
-                
-                s[r]=s[l]
-                
-                swap+=1
-            elif s[l]!=s[r] and int(s[r])>int(s[l]):
-                
-                s[l]=s[r]
-                swap+=1
-            l+=1
-            r-=1
-                
-        if l==r and int(s[l])<9:
-            
-            s[l]='9'
-            
-    elif k>=2:
-        
-        swap=0
-        l,r=0,len(s)-1
-        while swap<k and l<r:
-            
-            if l==0 and r==len(s)-1:
-                
-                s[l]='9'
-                s[r]='9'
-                swap+=1
-            elif s[l]!=s[r] and int(s[r])>int(s[l]):
-                
-                s[l]=s[r]
-                swap+=1
 
-            elif s[l]!=s[r] and int(s[l])>int(s[r]):
+    # first count number of mismatch
+
+    def count_mistmaches(s1,s2):
+
+        assert len(s1)==len(s2)
+        count=0
+
+        for char_s1, char_s2 in zip(s1,s2):
+
+            count+=char_s1!=char_s2
+
+        return count
+    
+
+    def parse_palindromes(s):
+
+        has_middle= len(s)%2!=0 # return True if len(s)%2==0
+
+        center_i=len(s)//2
+
+        left_part=s[:center_i]
+
+        right_part=s[center_i+1:] if has_middle else s[center_i:]
+
+        middle=s[center_i] if has_middle else ''
+
+        return left_part, middle, right_part[::-1]
+    
+    final_left=''
+
+    left_part, middle , rev_right_part=parse_palindromes(s)
+
+    mistmaches=count_mistmaches(left_part,rev_right_part)
+
+    if k>=n:
+
+        return '9'*n
+    if k<mistmaches:
+
+        return '-1'
+    
+    
+    for left_char,right_char in zip(left_part,rev_right_part):
+
+        is_mismatch=left_char!=right_char
+
+        count_not_9=int(left_char!='9')+int(right_char!='9')
+
+        next_char=None
+
+        if not is_mismatch: # if left_char==right_char
+
+            next_char=left_char
+
+            if k-2>mistmaches and count_not_9>0:
+
+                k-=2
+
+                next_char='9'
+        else: # if its a mismatch
+
+            if count_not_9==1:
+
+                k-=1
+
+                mistmaches-=1
+
+                next_char='9'
+
+            else:
+
+                if k-2>=mistmaches-1:
+
+                    k-=2
+                    next_char=left_char
+
+                else:
+
+                    larger_num=max(int(left_char),int(right_char))
+
+                    k-=1
+
+                    mistmaches-=1
+                    next_char=str(larger_num)
+
+        final_left+=next_char
+
+    if k and middle:
+
+        middle='9'
+
+    return final_left+middle+final_left[::-1]
+
+
+
+
+
                 
-                s[r]=s[l]
-                swap+=1
-                
-            l+=1
-            r-=1
-            
-    return ''.join(s) if s==s[::-1] else -1
+
+
+
+    
 
 if __name__=='__main__':
 
