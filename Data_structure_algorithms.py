@@ -493,6 +493,34 @@ def connectedCell(matrix):
 
 
 
+def Pairs(arr,k):
+
+
+    dict_num={}
+    count_difference=0
+
+    for i in arr:
+
+        if i in dict_num:
+
+            dict_num[i]+=1
+
+        else:
+
+            dict_num[i]=1
+
+    for i in arr:
+
+        complement=k+i
+
+        if (complement in dict_num and k>0) or (k==0 and dict_num[i]==2):
+
+            count_difference+=1
+
+    return count_difference
+
+
+
                 
 
 
@@ -500,9 +528,7 @@ def connectedCell(matrix):
     
 
 if __name__=='__main__':
-    grid=[[1,1,0,0],[0,1,1,0],[0,0,1,0],[1,0,0,0]]
-
-    print(connectedCell(grid))
+   print(Pairs([1,2,3,4],1))
                     
 
 
