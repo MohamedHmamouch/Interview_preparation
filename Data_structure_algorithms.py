@@ -451,8 +451,45 @@ def LCS(s1,s2):
 
 
 
+def connectedCell(matrix):
 
 
+    def count_region(i,j):
+
+        if i<0 or i>=rows or j>=cols or j<0 or matrix[i][j]!=1:
+
+            return 0
+        region=1
+
+        matrix[i][j]=-1 # means visited
+
+        for r in range(-1,2):
+
+            for c in range(-1,2):
+
+                if r==0 and c==0:
+
+                    continue
+                region+=count_region(i+r,j+c)
+
+        return region 
+
+    rows=len(matrix)
+
+    cols=len(matrix[0])
+    max_region=0
+
+    for i in range(len(matrix)):
+
+        for j in range(len(matrix[0])):
+
+            if matrix[i][j]==1:
+
+                region=count_region(i,j)
+
+                max_region=max(max_region,region)
+
+    return max_region
 
 
 
@@ -463,8 +500,13 @@ def LCS(s1,s2):
     
 
 if __name__=='__main__':
+    grid=[[1,1,0,0],[0,1,1,0],[0,0,1,0],[1,0,0,0]]
 
-    print(highestValuePalindrome("12321",1))
+    print(connectedCell(grid))
+                    
+
+
+
 
 
 
