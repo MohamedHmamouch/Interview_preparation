@@ -513,7 +513,7 @@ def Pairs(arr,k):
 
         complement=k+i
 
-        if (complement in dict_num and k>0) or (k==0 and dict_num[i]==2):
+        if (complement in dict_num and k>0) or (k==0 and dict_num[i]>1):
 
             count_difference+=1
 
