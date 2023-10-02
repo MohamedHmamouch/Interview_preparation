@@ -591,7 +591,52 @@ def SteadyGene(gene:str):
         min_sub=min(right-left+1,min_sub)
 
     return min_sub
+
+
+def gridlandMetro(n, m, k, track):
+    # Write your code here
+    
+    # {index of row: number of availability}
+    
+    total=n*m
+
+    dic={}
+
+    for i in range(k):
+
+        row=track[i][0]
+        start=track[i][1]
+        end=track[i][2]
+
+
+        if not row in dic:
+
+            dic[row]=[start,end]
+
+        elif start>dic[row][1]:
+
+            total-=end-start+1
+
+        elif end>dic[row][1]:
+
+            dic[row][1]=end
+
+    tracks=0
+
+    for i in dic:
+
+        tracks+=end-start+1
+
+    return total-tracks
+
+            
 if __name__=='__main__':
+    track = [[2, 2, 3], [3, 1, 4], [4, 4, 4]]
+    track2 = [[1, 1, 4], [2, 2, 4], [3, 1, 2],[4,2,3]]
+
+        
+    
+    print(gridlandMetro(4,4,3,track))
                     
 
 
