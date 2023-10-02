@@ -517,18 +517,81 @@ def Pairs(arr,k):
 
             count_difference+=1
 
-    return count_difference
+    return count_difference    
 
 
 
-                
+def absolutePermutation(n,k):
 
+    if k==0:return [ i for i in range(1,n+1)]
 
+    # we need to assure that we have 2n places
 
+    elif (2*n)%k!=0:
+        return [-1]
     
+    else:
 
+        res=[None]*(n+1)
+
+        for i in range(1,n+1):
+
+            if res[i]==None:
+
+                res[i]=i+k
+                res[i+k]=i
+
+    return res
+
+
+def SteadyGene(gene:str):
+
+    def extra_available(all_counts,max_nucleotide):
+
+        for c in all_counts.values():
+
+            if c>max_nucleotide:
+                return True
+        return False
+    
+    length_gene=len(gene)
+    max_nucleotide=length_gene/4
+
+    all_counts={"A":0,"C":0,"G":0,"T":0}
+
+    for nucleotide in gene:
+
+        all_counts[nucleotide]+=1
+
+    if not extra_available(all_counts=all_counts,max_nucleotide=max_nucleotide):
+        return 0
+    
+    right,left=0,0
+
+    min_sub=float("inf")
+
+    while right<length_gene:
+
+        while right<length_gene and extra_available(all_counts=all_counts,max_nucleotide=max_nucleotide):
+
+            nucleotide=gene[right]
+
+            all_counts[nucleotide]-=1
+
+            right+=1
+
+        while left < length_gene and not extra_available(all_counts=all_counts,max_nucleotide=max_nucleotide):
+
+            nucleotide=gene[left]
+            all_counts[nucleotide]+=1
+
+            left+=1
+
+
+        min_sub=min(right-left+1,min_sub)
+
+    return min_sub
 if __name__=='__main__':
-   print(Pairs([1,2,3,4],1))
                     
 
 
