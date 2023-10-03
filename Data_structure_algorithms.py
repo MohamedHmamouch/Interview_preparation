@@ -629,14 +629,21 @@ def gridlandMetro(n, m, k, track):
 
     return total-tracks
 
+
+def rotateLeft(d, arr):
+    new_arr=[0]*len(arr)
+    for i in range(len(arr)):
+        
+        new_index=i-d
+        
+        new_arr[new_index]=arr[i]
+        
+    return new_arr
+
+
+
             
 if __name__=='__main__':
-    track = [[2, 2, 3], [3, 1, 4], [4, 4, 4]]
-    track2 = [[1, 1, 4], [2, 2, 4], [3, 1, 2],[4,2,3]]
-
-        
-    
-    print(gridlandMetro(4,4,3,track))
                     
 
 
