@@ -641,9 +641,41 @@ def rotateLeft(d, arr):
     return new_arr
 
 
+def arrayManipulation(n, queries):
+    
+    arr=[0]*(n+1)
+
+    for q in queries:
+
+        a=q[0]
+        b=q[1]
+        k=q[2]
+
+        arr[a-1]+=k
+
+        if b<len(arr):
+
+            arr[b]-=k
+
+
+    max_val=-float('inf')
+
+    sumval=0
+
+    for i in arr:
+
+        sumval+=i
+        max_val=max(max_val,sumval)
+
+    return max_val  
+            
+
+
 
             
 if __name__=='__main__':
+
+    print(arrayManipulation(10,[[2,6,8],[3,5,7],[1,8,1],[5,9,15]]))
                     
 
 
