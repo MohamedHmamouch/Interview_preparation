@@ -668,6 +668,43 @@ def arrayManipulation(n, queries):
         max_val=max(max_val,sumval)
 
     return max_val  
+
+
+def height(root):
+
+    #supposons que la classe node a right and left
+
+    # methode 1
+
+    if not root:
+        return -1
+    
+    return 1+ max(height(root.left),height(root.right))
+
+def height(root):
+
+    if not root:
+        return -1
+    
+    height=-1
+    q=[root]
+
+    while q:
+
+        for _ in range(len(q)):
+
+            node=q.pop(0)
+
+            if node.left:
+
+                q.append(node.left)
+
+            if node.right:
+                q.append(node.right)
+
+        height+=1
+
+    return height
             
 
 
@@ -675,7 +712,7 @@ def arrayManipulation(n, queries):
             
 if __name__=='__main__':
 
-    print(arrayManipulation(10,[[2,6,8],[3,5,7],[1,8,1],[5,9,15]]))
+    print([[0]*5 for i in range(5)])
                     
 
 
