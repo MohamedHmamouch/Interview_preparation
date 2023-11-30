@@ -705,14 +705,78 @@ def height(root):
         height+=1
 
     return height
+
+
+
+def maxSubArray(arr):
+    l, r = 0, 1
+    max_sub = -float('inf')
+
+    while r < len(arr):
+        curr_sum = 0
+
+        for i in range(l, r + 1):
+            curr_sum += arr[i]
+
+        if curr_sum >= max_sub:
+            max_sub = curr_sum
+        if curr_sum < 0:
+            l = r  # Reset the left pointer when curr_sum is negative
+
+        r += 1
+
+    return max_sub
+
+
+def unboundedKnapsack(k, arr):
+    # Write your code here
+    arr.sort()
+    for i in arr:
+        
+        if k%i==0:
             
-
-
+            return k
+            
+    s=0
+    
+    for j in arr:
+        
+        if s+j<=k:
+            
+            s+=j
+            
+    return s
 
             
 if __name__=='__main__':
 
-    print([[0]*5 for i in range(5)])
+    s1=input()
+    s2=input()
+
+    order_s1=0
+    order_s2=0
+
+    for i in s1:
+        
+        order_s1+=ord(i.lower())- ord('a')
+        
+    for j in s2:
+        
+        order_s2+=ord(j.lower()) - ord('a')
+    
+    print(order_s1)
+    print(order_s2)
+    if order_s1>order_s2:
+        
+        print("1")
+        
+    elif order_s2>order_s1:
+        
+        print("-1")
+        
+    else:
+        
+        print("0")
                     
 
 
