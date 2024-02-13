@@ -22,7 +22,6 @@ if __name__=='__main__':
 
         print('IMPOSSIBLE')
     else:
-        print(d)
         res=[0]*3
         for k,v in d.items():
 
