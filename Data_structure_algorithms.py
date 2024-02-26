@@ -750,83 +750,24 @@ def unboundedKnapsack(k, arr):
             
 if __name__=='__main__':
     
-    # n=int(input())
-    # l=list(map(int,input().split()))
-    # l.sort()
+    n,m=map(int,input().split())
+    l=[]
+    max_take=0
     
-    # sum=sum(l)
-    # me=sum//2
-    # twin=sum//2
-    # new_sum=0
-    # iterations=0
-
-    # for i in range(n-1,-1,-1):
-
-    #     if new_sum<=twin:
-
-    #         new_sum+=l[i]
-    #         iterations+=1
-
-    # print(iterations)
-
-    # s=str(input())
-    # string=str(input())
-    # alpha="qwertyuiopasdfghjkl;zxcvbnm,./"
-    # l=[0]*len(string)
-
-    # if s=="R":
-    #     move=-1
-    # else:
-    #     move=1
-
-    # for i in range(len(string)):
-
-    #     index=alpha.index(string[i])+move
-    #     if index>=len(alpha):
-    #         index=0
-
-    #     l[i]=alpha[index]
-
-    # print(''.join(l))
-
-    n=int(input())
-    end=n-1
-    begin=0
-    is_X=True
-
-    for i in range(n):
-        s=str(input())
-        diag=s[0]
-
-        end=n-1
-        begin=0
-
-        while begin<=end:
-
-            if s[end]!=s[begin] or s[end]==diag or s[begin]==diag:
-                is_X=False
-
-                break
-
-            else:
-                end-=1
-                begin+=1
-
-    if is_X:
-        print("YES")
-    else:
-        print("NO")
-
+    for _ in range(m):
+        
+        a,b=map(int,input().split())
+        l.append([a,b])
     
-
-
+    l.sort(key=lambda x:x[1],reverse=True)
     
-
-
-
-
-
-    
+    for i in range(m):
+        
+        max_take+=min(l[i][0],n)*l[i][1]
+        
+        n-=min(l[i][0],n)
+        
+    print(max_take)
     
 
 
