@@ -10,6 +10,7 @@ if __name__=='__main__':
     count_second=0
     X=[]
     Y=[]
+    last=0
 
     for i in range(n):
 
@@ -18,16 +19,15 @@ if __name__=='__main__':
         if a>0:
 
             first+=a
-            count_first+=1
             X.append(a)
+            last=1
 
         else:
 
             second+=(-1)*a
-            count_second+=1
-            Y.append(a)
+            Y.append(-a)
+            last=0
 
-    
     if first>second:
 
         print("first")
@@ -37,13 +37,9 @@ if __name__=='__main__':
 
     elif first==second:
 
-        if len(X)>len(Y) and all(X)==all(Y):
-
-            print("first")
-
+        print("first" if last else "second")
+            
         else:
-
-            print("second")
-
+            print("first" if X>Y else "second")
 
     
