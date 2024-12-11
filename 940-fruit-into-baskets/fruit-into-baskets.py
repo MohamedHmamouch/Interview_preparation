@@ -20,9 +20,8 @@ class Solution:
 
                 l+=1
 
-            total=sum([val for key,val in freq.items()])
 
-            res=max(res,total)
+            res=max(res,r-l+1)
             r+=1
 
         return res
