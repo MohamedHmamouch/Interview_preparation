@@ -11,4 +11,4 @@ if __name__=='__main__':
         print("-1")
 
     else:
-        print(total_sum/5)
+        print(total_sum//5)
