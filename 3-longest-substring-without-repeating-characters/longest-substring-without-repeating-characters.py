@@ -1,32 +1,27 @@
 class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
+    def lengthOfLongestSubstring(self, nums: str) -> int:
 
-
-        l,r=0,0
+        l=0
+        r=0
         freq={}
+        max_substring=0
+        while r<len(nums):
 
-        n=len(s)
-        max_rep=0
-        res=0
+            freq[nums[r]]=1+freq.get(nums[r],0)
 
-        while r<n:
+            while l<=r and freq[nums[r]]>1:
 
-            freq[s[r]]=1+freq.get(s[r],0)
+                freq[nums[l]]-=1
 
-            while l<=r and freq[s[r]]>1:
+                if freq[nums[l]]<0:
 
-                freq[s[l]]-=1
-
-                if freq[s[l]]==0:
-
-                    del freq[s[l]]
-
+                    del freq[nums[l]]
 
                 l+=1
 
-            res=max(res,len(freq))
+            
+
+            max_substring=max(r-l+1,max_substring)
             r+=1
 
-        return res
-
-        
+        return max_substring
