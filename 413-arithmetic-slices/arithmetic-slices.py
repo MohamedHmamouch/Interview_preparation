@@ -7,6 +7,7 @@ class Solution:
 
         l=0
         res=0
+        temp=0
         diff=nums[1]-nums[0]
 
         for i in range(2,len(nums)):
@@ -19,12 +20,19 @@ class Solution:
 
                     res+=1
                     l+=1
-                
+
                 l=temp
 
             else:
-
                 diff=nums[i]-nums[i-1]
+
                 l=i-1
 
         return res
+
+
+
+
+
+        
+        
