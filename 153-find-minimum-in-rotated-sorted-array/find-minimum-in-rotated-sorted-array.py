@@ -2,26 +2,27 @@ class Solution:
     def findMin(self, nums: List[int]) -> int:
 
 
-        left=0
-        right=len(nums)-1
-
+        l=1
         min_element=nums[0]
 
-        while left<=right:
+        r=len(nums)-1
 
-            mid=(left+right)//2
-            # print(mid)
+        while l<=r:
 
-            if nums[mid]>=min_element:
+            mid=(l+r)//2
 
-                left=mid+1
+            if nums[mid]<=min_element:
 
+                min_element=nums[mid]
 
-            elif nums[mid]<=min_element:
+                r=mid-1
 
-                min_element=min(nums[mid],min_element)
+            else:
 
-                right=mid-1
+                l=mid+1
 
         return min_element
+
+
+
         
