@@ -1,28 +1,32 @@
 class Solution:
-    def totalFruit(self, nums: List[int]) -> int:
-
-        n=len(nums)
-        freq={}
+    def totalFruit(self, fruits: List[int]) -> int:
+        
         l,r=0,0
-        res=0
 
-        while r<n:
+        max_picked=0
 
-            freq[nums[r]]=1+freq.get(nums[r],0)
+        basket={}
+        total=0
 
-            while len(freq)>2 and l<=r:
+        while r<len(fruits):
 
-                freq[nums[l]]-=1
+            basket[fruits[r]]=1+basket.get(fruits[r],0)
+            total+=1
 
-                if freq[nums[l]]==0:
+            while l<=r and len(basket)>2:
 
-                    del freq[nums[l]]
+                total-=1
+                basket[fruits[l]]-=1
+
+                if basket[fruits[l]]<=0:
+
+                    del basket[fruits[l]]
 
                 l+=1
 
-
-            res=max(res,r-l+1)
             r+=1
+            max_picked=max(max_picked,total)
 
-        return res
-        
+        return max_picked
+
+
