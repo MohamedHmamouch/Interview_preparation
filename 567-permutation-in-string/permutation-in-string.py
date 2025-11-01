@@ -1,7 +1,10 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        
 
+
+        
+        ord_s1=[0]*26
+        ord_s2=[0]*26
 
         n1=len(s1)
         n2=len(s2)
@@ -10,25 +13,27 @@ class Solution:
 
             return False
 
-        s1_count=[0]*26
-        s2_count=[0]*26
 
-        for i in range(n1):
+        for i in range(len(s1)):
 
-            s1_count[ord(s1[i])-ord('a')]+=1
-            s2_count[ord(s2[i])-ord('a')]+=1
+            ord_s1[ord(s1[i])-ord('a')]+=1
 
+            ord_s2[ord(s2[i])-ord('a')]+=1
 
-        if s1_count==s2_count:
+        if ord_s1==ord_s2:
 
             return True
 
+
         
         for k in range(n1,n2):
-            s2_count[ord(s2[k])-ord("a")]+=1
-            s2_count[ord(s2[k-n1])-ord("a")]-=1
 
-            if s1_count==s2_count:
+            ord_s2[ord(s2[k])-ord('a')]+=1
+
+            ord_s2[ord(s2[abs(k-n1)])-ord('a')]-=1
+
+
+            if ord_s2==ord_s1:
 
                 return True
 
