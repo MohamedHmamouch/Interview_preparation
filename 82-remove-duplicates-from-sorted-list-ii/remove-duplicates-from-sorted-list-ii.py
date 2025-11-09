@@ -7,40 +7,34 @@ class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
         if not head:
-
             return 
 
-        repeated_val=set()
 
-        dummy=ListNode()
-        newnode=dummy
-        prev=head
-        curr=head.next
+        freq={}
+        curr=head
+
 
         while curr:
 
-            
-            if prev.val!=curr.val and prev.val not in repeated_val:
-
-                dummy.next=prev
-                dummy=dummy.next
-
-            elif prev.val==curr.val:
-
-                repeated_val.add(curr.val)
-
-            prev=prev.next
+            freq[curr.val]=1+freq.get(curr.val,0)
             curr=curr.next
-            
 
-        if prev and prev.val not in repeated_val:
+        dummy = ListNode()
+        curr = dummy
+        counter=0
 
-            dummy.next=prev
+        for key, value in freq.items():
 
-        elif prev and prev.val in repeated_val:
+            if value>1:
+                counter+=1
+                continue
 
-            dummy.next=prev.next
+            else:
 
-        
-        return newnode.next
-        
+                node=ListNode(val=key)
+
+                curr.next=node
+
+                curr=node   
+
+        return dummy.next
