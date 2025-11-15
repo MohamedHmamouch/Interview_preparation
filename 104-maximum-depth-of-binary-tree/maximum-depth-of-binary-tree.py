@@ -12,22 +12,25 @@ class Solution:
             return 0
         
 
-        depth=0
-        level=1
-        q=[(root,level)]
+        max_depth=0
+        depth=1
+        stack=[(root,depth)]
 
-        while q:
+        while stack:
 
+            node,depth=stack.pop()
 
-            node,level=q.pop(0)
+            if not node.left and not node.right:
+
+                max_depth=max(max_depth,depth)
+
 
             if node.left:
 
-                q.append((node.left,level+1))
+                stack.append((node.left,depth+1))
 
             if node.right:
 
-                q.append((node.right,level+1))
+                stack.append((node.right,depth+1))
 
-
-        return level
+        return max_depth
