@@ -12,19 +12,18 @@ class Solution:
             return False
 
 
-        s=head
+        slow=head
+        fast=head.next
 
-        f=head.next
 
-        while f and f.next:
+        while fast and fast.next and slow.next:
 
-            if s==f:
+
+            slow=slow.next
+            fast=fast.next.next
+            
+            if slow==fast:
 
                 return True
-
-            
-            s=s.next
-            f=f.next.next
-
-        return False
         
+        return False
