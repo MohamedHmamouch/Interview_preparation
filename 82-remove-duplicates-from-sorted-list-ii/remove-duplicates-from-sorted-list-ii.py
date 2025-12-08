@@ -6,35 +6,36 @@
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
+
         if not head:
+
             return 
 
 
-        freq={}
-        curr=head
+        node_dict={}
+
+        current=head
+
+        while current:
+
+            node_dict[current.val]=1+node_dict.get(current.val,0)
+
+            current=current.next
 
 
-        while curr:
+        print(node_dict)
 
-            freq[curr.val]=1+freq.get(curr.val,0)
-            curr=curr.next
 
-        dummy = ListNode()
-        curr = dummy
-        counter=0
+        dummy=ListNode()
 
-        for key, value in freq.items():
+        newhead=dummy
 
-            if value>1:
-                counter+=1
-                continue
+        for node,freq in node_dict.items():
 
-            else:
+            if freq==1:
+                dummy.next=ListNode(val=node) 
 
-                node=ListNode(val=key)
+                dummy=dummy.next
 
-                curr.next=node
-
-                curr=node   
-
-        return dummy.next
+        return newhead.next
+        
