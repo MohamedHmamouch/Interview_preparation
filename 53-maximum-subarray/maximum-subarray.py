@@ -2,21 +2,22 @@ class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         
 
-        max_sum=nums[0]
-
-        current_sum=0
+        max_sum=float('-inf')
 
 
-        for n in nums:
+        total=0
 
-            current_sum+=n
+        for k in nums:
 
-            max_sum=max(current_sum,max_sum)
+            if total+k>=0:
 
-            if current_sum<=0:
+                total+=k
+                max_sum=max(max_sum,total)
 
-                current_sum=0
+            else:
 
-        
+                total=0
 
-        return max_sum
+
+
+        return max_sum if max_sum!=float('-inf') else max(nums)
