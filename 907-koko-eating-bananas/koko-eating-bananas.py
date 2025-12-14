@@ -4,38 +4,39 @@ class Solution:
         import math
 
 
-        left=1
-        right=max(piles)
-        min_speed=right
+        l,r=1,max(piles)
 
-        def piles_finished(h,k):
+
+        def can_eat(mid):
 
             total_hours=0
 
-            for p in piles:
 
-                total_hours+=math.ceil(p/k)
+            for pile in piles:
+
+
+                total_hours+=math.ceil(pile/mid)
 
             return total_hours<=h
 
+    
 
+        min_speed=float('inf')
 
-        while left<=right:
+        while l<=r:
 
-            mid=(left+right)//2
+            mid=(l+r)//2
 
-            if piles_finished(h=h,k=mid):
+            if can_eat(mid):
 
                 min_speed=min(mid,min_speed)
-                right=mid-1
 
+                r=mid-1
             else:
 
-                left=mid+1
-  
-
+                l=mid+1
 
         return min_speed
 
-
+            
         
