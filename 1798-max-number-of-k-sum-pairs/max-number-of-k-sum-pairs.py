@@ -1,27 +1,28 @@
 class Solution:
     def maxOperations(self, nums: List[int], k: int) -> int:
+        
 
+        num_pairs=0
+
+        r=len(nums)-1
+        l=0
         nums.sort()
-        counter=0
-        l,r=0,len(nums)-1
 
         while l<r:
 
-            mid=(l+r)//2
-
             if nums[l]+nums[r]==k:
 
-                counter+=1
                 l+=1
                 r-=1
+                num_pairs+=1
 
             elif nums[l]+nums[r]>k:
 
                 r-=1
 
-            elif nums[l]+nums[r]<k:
+            else:
 
                 l+=1
 
-        return counter
-        
+        return num_pairs
+
