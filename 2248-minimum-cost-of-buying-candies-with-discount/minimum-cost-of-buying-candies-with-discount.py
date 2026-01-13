@@ -1,23 +1,23 @@
 class Solution:
     def minimumCost(self, cost: List[int]) -> int:
+
+
+
+        total_cost=0
         
-        total=0
+        num_candies=0
 
-        count=0
+        cost.sort(reverse=True)
 
+        for r in cost:
 
-        cost.sort()
+            total_cost+=r
+            num_candies+=1
 
-        for i in range(len(cost)-1,-1,-1):
+            if num_candies>2:
 
+                num_candies=0
+                total_cost-=r
 
-            if count<2:
-
-                total+=cost[i]
-                count+=1
-
-            elif count==2:
-
-                count=0
-
-        return total
+        return total_cost
+        
