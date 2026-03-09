@@ -4,26 +4,18 @@ class Solution:
         if len(nums)==1:
 
             return 0
+
+
+        last_element=float('inf')
+
+        for i in range(len(nums)):
+
+            next_element=nums[i+1] if i+1<len(nums) else float('-inf')
+
+            prev_element=nums[i-1] if i-1>=0 else float('-inf')
+
+            
+            if prev_element<nums[i]>next_element:return i
+
+
         
-
-        l,r=0,len(nums)-1
-
-        while l<=r:
-
-            mid=(l+r)//2
-
-            val_1=nums[mid+1] if mid+1<len(nums) else -1*float('inf')
-            val_2=nums[mid-1] if mid-1>=0 else -1*float('inf')
-
-            if nums[mid]>val_2 and nums[mid]>val_1:
-
-                return mid
-
-            elif nums[mid]>val_2:
-
-                l=mid+1
-
-            else:
-
-                r=mid-1
-
