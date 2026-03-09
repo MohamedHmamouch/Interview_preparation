@@ -1,22 +1,25 @@
-from collections import defaultdict
-
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        
+
+        from collections import defaultdict
 
         freq=defaultdict(list)
 
-
         for s in strs:
-            ord_str=[0]*26
+
+            ans=[0]*27
+
             for char in s:
 
-                ord_str[ord(char)-ord('a')]+=1
+                ans[ord(char)-ord('a')]+=1
 
 
-            freq[tuple(ord_str)].append(s)
+            freq[tuple(ans)].append(s)
 
-
-        return list(freq.values())
 
         
-        
+        print(freq)
+
+        return [v for _,v in freq.items()]
+
