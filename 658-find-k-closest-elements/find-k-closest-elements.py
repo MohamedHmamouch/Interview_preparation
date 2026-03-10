@@ -1,18 +1,23 @@
 class Solution:
-    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
-        
+    def findClosestElements(self, nums: List[int], k: int, x: int) -> List[int]:
 
-        r=len(arr)-1
-        l=0
+        l,r=0,len(nums)-1
 
-        while r-l>=k:
+        while r-l+1>k:
 
-            if abs(arr[r]-x)<abs(arr[l]-x):
+            if abs(nums[r]-x)<abs(nums[l]-x):
 
                 l+=1
+
+
+            elif abs(nums[l]-x)<abs(nums[r]-x):
+
+                r-=1
+
 
             else:
 
                 r-=1
 
-        return arr[l:r+1]
+        return nums[l:r+1]
+        
