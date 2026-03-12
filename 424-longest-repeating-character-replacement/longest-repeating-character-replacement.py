@@ -1,31 +1,32 @@
 class Solution:
-    def characterReplacement(self, nums: str, k: int) -> int:
+    def characterReplacement(self, s: str, k: int) -> int:
+        
+        l,r=0,0
 
-        l=0
-        r=0
-        m=0
-        max_substring=0
+        longest=0
+
         freq={}
-        while r<len(nums):
+        max_freq=0
 
+        while r<len(s):
+            
+            freq[s[r]]=1+freq.get(s[r],0)
 
-            freq[nums[r]]=1+freq.get(nums[r],0)
+            max_freq=max(max_freq,freq[s[r]])
 
-            m=max(freq[nums[r]],m)
+            while l<r and r-l+1-max_freq>k:
 
-            while l<=r and r-l+1-m>k:
+                freq[s[l]]-=1
 
-                freq[nums[l]]-=1
-                m=max(m,freq[nums[l]])
+                if freq[s[l]]<=0:
 
-                if freq[nums[l]]<=0:
-
-                    del freq[nums[l]]
+                    del freq[s[l]]
 
                 l+=1
 
-            max_substring=max(r-l+1,max_substring)
+            
+            longest=max(longest,r-l+1)
+
             r+=1
 
-
-        return max_substring
+        return longest
