@@ -1,41 +1,38 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-
-
         
-        ord_s1=[0]*26
-        ord_s2=[0]*26
 
-        n1=len(s1)
-        n2=len(s2)
+        l,r=0,0
 
-        if n1>n2:
+        l1=[0]*26
+        l2=[0]*26
 
-            return False
+        for char in s1:
 
-
-        for i in range(len(s1)):
-
-            ord_s1[ord(s1[i])-ord('a')]+=1
-
-            ord_s2[ord(s2[i])-ord('a')]+=1
-
-        if ord_s1==ord_s2:
-
-            return True
+            l1[ord(char)-ord('a')]+=1
 
 
-        
-        for k in range(n1,n2):
 
-            ord_s2[ord(s2[k])-ord('a')]+=1
+        while r<len(s2):
 
-            ord_s2[ord(s2[abs(k-n1)])-ord('a')]-=1
+            l2[ord(s2[r])-ord('a')]+=1
 
+            while r-l+1>=len(s1):
 
-            if ord_s2==ord_s1:
+                if l2==l1:
 
-                return True
+                    return True
 
+                else:
+
+                    l2[ord(s2[l])-ord('a')]-=1
+
+                    if l2[ord(s2[l])-ord('a')]<0:
+                        l2[ord(s2[l])-ord('a')]=0
+
+                l+=1
+
+            r+=1
         return False
 
+                        
