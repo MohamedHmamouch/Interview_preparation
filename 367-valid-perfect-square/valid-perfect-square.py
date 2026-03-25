@@ -1,11 +1,10 @@
 class Solution:
     def isPerfectSquare(self, num: int) -> bool:
-
-        l,r=0,num
-
+        
+        l=1
+        r=num
 
         while l<=r:
-
 
             mid=(l+r)//2
 
@@ -13,13 +12,12 @@ class Solution:
 
                 return True
 
-            elif mid**2>num:
+            elif mid**2<num:
 
-                r=mid-1
-
+                l=mid+1
 
             else:
 
-                l=mid+1
+                r=mid-1
 
         return False
