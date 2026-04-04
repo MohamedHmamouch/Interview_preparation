@@ -1,18 +1,23 @@
 class Solution:
     def twoSumLessThanK(self, nums: List[int], k: int) -> int:
 
+        nums.sort()
+
+
+        l=0
+        r=len(nums)-1
+
         max_sum=-1
 
-        for i in range(len(nums)):
+        while l<r:
 
-            current_sum=nums[i]
+            if nums[r]+nums[l]<k:
+                max_sum=max(max_sum,nums[r]+nums[l])
+                l+=1
 
-            for j in range(i+1,len(nums)):
 
-                current_sum=nums[i]+nums[j]
+            else:
 
-                if current_sum<k:
-
-                    max_sum=max(max_sum,current_sum)
+                r-=1
 
         return max_sum
