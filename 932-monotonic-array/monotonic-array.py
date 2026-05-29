@@ -1,27 +1,52 @@
 class Solution:
     def isMonotonic(self, nums: List[int]) -> bool:
+
+        if len(nums)==1:
+
+            return True
+
+        left, right=0,1
+
+        increasing=False
+        while right<len(nums):
+
+
+            if nums[left]<=nums[right]:
+
+                increasing=True
+
+            else:
+
+                increasing=False
+
+                break
+
+            left+=1
+
+            right+=1
+
+        if not increasing:
+
+            left, right=0,1
+
+        decreasing=False
+        while right<len(nums):
+
+
+            if nums[left]>=nums[right]:
+
+                decreasing=True
+
+            else:
+
+                decreasing=False
+
+                break
+
+            left+=1
+
+            right+=1
+
         
-        increasing_count=1
-        decreasing_count=1
+        return True if  increasing or  decreasing else False
 
-        equal=0
-        l=r=0
-
-        for r in range(1,len(nums)):
-
-            if nums[r-1]<nums[r]:
-
-                increasing_count+=1
-
-            elif nums[r-1]>nums[r]:
-
-                decreasing_count+=1
-
-            else: equal+=1
-
-        print(decreasing_count)
-        print(increasing_count)
-        print(equal)
-
-        
-        return True if (increasing_count+equal==len(nums) or decreasing_count+equal==len(nums)) else False
