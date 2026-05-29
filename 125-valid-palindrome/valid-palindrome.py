@@ -1,28 +1,26 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-
-
-        string=""
+        
+        text=""
 
         for char in s:
 
-            if char.isalnum():
-                string+=char.lower()
+            text+=char.lower() if char.isalnum() else ''
 
-        
 
-        l,r=0,len(string)-1
+        left,right=0,len(text)-1
 
-        while l<=r:
+        print(text)
 
-            if string[l]!=string[r]:
+        while left<right:
+
+
+            if text[left]!=text[right]:
 
                 return False
 
-            l+=1
-            r-=1
+
+            left+=1
+            right-=1
 
         return True
-
-
-        
