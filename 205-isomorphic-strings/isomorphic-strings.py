@@ -1,22 +1,30 @@
 class Solution:
-    def isIsomorphic(self, strs: str, string: str) -> bool:
+    def isIsomorphic(self, s: str, t: str) -> bool:
         
 
-        mapper_to_t={}
+        s_to_t={}
 
-        mapper_to_s={}
+        t_to_s={}
 
-        for s,t in zip(strs,string):
+        for i,j in zip(s,t):
 
-            if s in mapper_to_t and mapper_to_t[s]!=t:
 
-                return False
-
-            if t in mapper_to_s and mapper_to_s[t]!=s:
+            if i in s_to_t and s_to_t[i]!=j:
 
                 return False
 
-            mapper_to_t[s]=t
-            mapper_to_s[t]=s
+            s_to_t[i]=j
+            t_to_s[j]=i
+
+        
+        print(s_to_t)
+
+        print(t_to_s)
+
+        for k,v in s_to_t.items():
+
+            if k!=t_to_s[v]:
+
+                return False
 
         return True
