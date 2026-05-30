@@ -1,27 +1,30 @@
 class Solution:
-    def numRescueBoats(self, nums: List[int], limit: int) -> int:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
 
-        nums.sort()
+        people.sort()
 
-        l,r=0,len(nums)-1
+        counter=0
+        left,right=0,len(people)-1
 
-        boat=0
+        while left<=right:
+
+            total=people[left]+people[right]
+
+            if total>limit:
+
+                counter+=1
+
+                right-=1
 
 
-        while l<=r:
+            elif total<=limit:
+
+                left+=1
+                right-=1
+
+                counter+=1
+
+        return counter
 
 
-            if nums[r]+nums[l]<=limit:
-
-                boat+=1
-
-                r-=1
-
-                l+=1
-
-            elif nums[r]+nums[l]>limit:
-
-                boat+=1
-                r-=1
-
-        return boat
+        
