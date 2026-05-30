@@ -1,23 +1,27 @@
 class Solution:
     def isPerfectSquare(self, num: int) -> bool:
+
         
-        l=1
-        r=num
+        left=0
+        right=num
 
-        while l<=r:
+        while left<=right:
 
-            mid=(l+r)//2
 
-            if mid**2==num:
+            mid=(left+right)//2
+
+            if mid*mid==num:
 
                 return True
 
-            elif mid**2<num:
 
-                l=mid+1
+            elif mid*mid>num:
+
+                right=mid-1
 
             else:
 
-                r=mid-1
+                left=mid+1
 
         return False
+        
