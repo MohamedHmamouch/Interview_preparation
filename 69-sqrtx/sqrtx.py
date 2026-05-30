@@ -2,30 +2,25 @@ class Solution:
     def mySqrt(self, x: int) -> int:
         
 
-        closest=0
-
-        l,r=0,x
+        left,right=0,x+1
 
 
-        while l<=r:
+        while left<=right:
+
+            mid=(left+right)//2
 
 
-            mid=(l+r)//2
-
-
-            if mid**2==x:
-
+            if mid*mid==x:
+                
                 return mid
 
+            elif mid*mid>x:
 
-            elif mid**2>x:
+                right=mid-1
 
-                r=mid-1
 
             else:
 
-                closest=max(closest,mid)
+                left=mid+1
 
-                l=mid+1
-
-        return closest
+        return right
