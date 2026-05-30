@@ -1,9 +1,7 @@
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
-        
 
         p1=0
-
         p2=0
 
         counter=0
@@ -13,7 +11,6 @@ class Solution:
             if s[p1]==t[p2]:
 
                 p1+=1
-
                 p2+=1
 
                 counter+=1
@@ -22,5 +19,6 @@ class Solution:
 
                 p2+=1
 
-        
         return counter==len(s)
+
+        
