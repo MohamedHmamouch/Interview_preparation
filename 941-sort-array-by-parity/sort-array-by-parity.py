@@ -2,22 +2,18 @@ class Solution:
     def sortArrayByParity(self, nums: List[int]) -> List[int]:
         
 
-        l=0
+        left,right=0,0
 
-        is_odd=True if nums[l]%2!=0 else False
+        for right in range(len(nums)):
 
-        for r in range(len(nums)):
+            if nums[right]%2==0 and nums[left]%2!=0:
 
-            
-            if nums[r]%2==0 and nums[l]%2!=0:
+                nums[left],nums[right]=nums[right],nums[left]
 
-                nums[l],nums[r]=nums[r],nums[l]
-                l+=1
+                left+=1
 
-            if nums[l]%2==0:
-                l+=1
-            # else:
+            elif nums[left]%2==0:
 
-            #     l=r
+                left+=1
 
         return nums
