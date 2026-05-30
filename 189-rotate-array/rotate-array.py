@@ -3,27 +3,39 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        nums.reverse()
-
         k=k%len(nums)
 
-        l=0
-        r=k-1
 
-        while l<r:
+        nums.reverse()
 
-            nums[l],nums[r]=nums[r],nums[l]
-            l+=1
-            r-=1
+        print(nums,k)
+
+        end=k-1
+
+        left=0
+
+        while left<end:
+
+            nums[left],nums[end]=nums[end],nums[left]
+
+            end-=1
+
+            left+=1
+
+        print(nums,'step1')
+        
+        left=k
+        end=len(nums)-1
+
+        print(left,end)
+
+        while left<end:
+
+            nums[left],nums[end]=nums[end],nums[left]
+
+            left+=1
+
+            end-=1
+
 
         
-        l=k
-        r=len(nums)-1
-
-        while l<r:
-
-            nums[l],nums[r]=nums[r],nums[l]
-
-            l+=1
-            r-=1
-
