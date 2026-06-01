@@ -9,11 +9,20 @@ class Solution:
 
             freq[n]=1+freq.get(n,0)
 
+        heap=[]
 
-        
-        sorted_freq=dict(sorted(freq.items(),key=lambda item:item[1],reverse=True))
+        heap=[(-1*val,key) for key,val in freq.items()]
 
-        sorted_list=[key for key in sorted_freq.keys()]
-        print(sorted_list)
+        import heapq
 
-        return sorted_list[:k]
+        heapq.heapify(heap)
+
+        ans=[]
+        while k>0:
+
+            val,key=heapq.heappop(heap)
+
+            ans.append(key)
+            k-=1
+
+        return ans
