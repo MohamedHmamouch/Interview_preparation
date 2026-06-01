@@ -2,16 +2,21 @@ class Solution:
     def transpose(self, matrix: List[List[int]]) -> List[List[int]]:
         
 
-        mat=[]
+        rows=len(matrix)
 
-        for j in range(len(matrix[0])):
+        columns=len(matrix[0])
 
-            temp=[]
+        new_matrix=[]
 
-            for i in range(len(matrix)):
 
-                temp.append(matrix[i][j])
+        for c in range(columns):
 
-            mat.append(temp)
+            row=[]
 
-        return mat
+            for r in range(rows):
+
+                row.append(matrix[r][c])
+
+            new_matrix.append(row)
+
+        return new_matrix
