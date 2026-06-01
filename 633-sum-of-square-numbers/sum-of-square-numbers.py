@@ -2,21 +2,48 @@ class Solution:
     def judgeSquareSum(self, c: int) -> bool:
         
 
-        l=0
-        r=int(c**0.5)
+        # left=0
 
-        while l<=r:
+        # right=c
 
-            if l**2+r**2==c:
+        # while left<=right:
+
+        #     val=left**2+right**2
+
+        #     if val==c:
+
+        #         return True
+
+        #     elif val>c:
+
+        #         right-=1
+
+        #     else:
+
+        #         left+=1
+
+        # return False
+
+        import math
+        left=0
+
+        right=int(math.sqrt(c))
+
+
+        while left<=right:
+
+            val=left**2+right**2
+
+            if val==c:
 
                 return True
 
-            elif l**2+r**2>c:
+            elif val>c:
 
-                r-=1
+                right-=1
 
             else:
 
-                l+=1
+                left+=1
 
         return False
