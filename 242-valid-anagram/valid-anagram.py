@@ -1,32 +1,29 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
 
+        if len(s)!=len(t):
 
-        s_mapper={}
-        t_mapper={}
+            return False
+
+        s_to_t={}
 
         for char in s:
 
-            s_mapper[char]=1+s_mapper.get(char,0)
+            s_to_t[char]=1+s_to_t.get(char,0)
 
+        
         for char in t:
 
-            if char not in s_mapper:
+
+            if char not in s_to_t:
 
                 return False
 
-            t_mapper[char]=1+t_mapper.get(char,0)
 
+            s_to_t[char]-=1
 
-        for k,v in s_mapper.items():
-
-            if k not in t_mapper:
-
-                return False
-
-            elif k in t_mapper and t_mapper[k]!=v:
+            if s_to_t[char]<0:
 
                 return False
 
         return True
-        
