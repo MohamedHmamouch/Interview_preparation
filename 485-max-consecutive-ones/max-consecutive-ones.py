@@ -1,15 +1,20 @@
 class Solution:
-    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+    def findMaxConsecutiveOnes(self, nums: list[int]) -> int:
+        
+
         total=0
-        max_total=0
+        max_sum=float('-inf')
+
 
         for r in range(len(nums)):
 
-            total+=nums[r]
-            max_total=max(total,max_total)
+            
+            max_sum=max(max_sum,total)
 
             if nums[r]==0:
 
                 total=0
 
-        return max_total
+            else:total+=nums[r] 
+
+        return max(max_sum,total)
