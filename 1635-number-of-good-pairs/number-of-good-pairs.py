@@ -1,20 +1,16 @@
-
-import math
 class Solution:
-    def numIdenticalPairs(self, nums: List[int]) -> int:
-
-        mapper={}
-
-        for n in nums:
-
-            mapper[n]=1+mapper.get(n,0)
+    def numIdenticalPairs(self, nums: list[int]) -> int:
 
 
-        total=0
+        count=0
 
-        for _,v in mapper.items():
+        for i in range(len(nums)):
 
-            total+=math.comb(v,2)
+            for j in range(i+1,len(nums)):
 
-        return total
-        
+                if nums[i]==nums[j]:
+
+                    count+=1
+
+
+        return count
