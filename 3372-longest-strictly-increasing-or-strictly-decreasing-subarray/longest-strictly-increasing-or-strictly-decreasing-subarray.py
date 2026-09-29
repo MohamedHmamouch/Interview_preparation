@@ -1,6 +1,10 @@
 class Solution:
     def longestMonotonicSubarray(self, nums: List[int]) -> int:
+        
 
+        # increasing. 
+
+        
         increasing=1
         decreasing=1
         count=1
@@ -8,12 +12,12 @@ class Solution:
         for r in range(1,len(nums)):
 
 
-            if nums[r]>nums[r-1]:
+            if nums[r-1]<nums[r]:
 
                 increasing+=1
                 decreasing=1
 
-            elif nums[r]<nums[r-1]:
+            elif nums[r-1]>nums[r]:
 
                 decreasing+=1
                 increasing=1
@@ -26,4 +30,3 @@ class Solution:
             count=max(increasing,decreasing,count)
 
         return count
-
