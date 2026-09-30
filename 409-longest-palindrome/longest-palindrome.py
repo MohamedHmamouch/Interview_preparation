@@ -1,26 +1,27 @@
 class Solution:
     def longestPalindrome(self, s: str) -> int:
 
-        mapper={}
+
+        freq={}
+        
 
         for char in s:
 
-            mapper[char]=1+mapper.get(char,0)
+            freq[char]=1+freq.get(char,0)
 
         
 
+        ans=0
 
-        longest=0
-        is_odd=False
+        odd=False
 
-        for k,v in mapper.items():
+        for k,v in freq.items():
 
-            if v%2==0:
-
-                longest+=v
+            if v%2==0:ans+=v
 
             else:
-                is_odd=True
-                longest+=v-1
-        
-        return longest+1 if is_odd else longest
+
+                odd=True
+                ans+=v-1
+
+        return ans+1 if odd else ans
