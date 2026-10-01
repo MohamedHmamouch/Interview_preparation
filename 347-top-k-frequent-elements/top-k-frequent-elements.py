@@ -1,28 +1,15 @@
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
         
-
-
+        
         freq={}
-
         for n in nums:
 
             freq[n]=1+freq.get(n,0)
 
-        heap=[]
 
-        heap=[(-1*val,key) for key,val in freq.items()]
+        sorted_list=[key for key in dict(sorted(freq.items(), key=lambda item:item[1], reverse=True))]
 
-        import heapq
+        print(sorted_list)
 
-        heapq.heapify(heap)
-
-        ans=[]
-        while k>0:
-
-            val,key=heapq.heappop(heap)
-
-            ans.append(key)
-            k-=1
-
-        return ans
+        return sorted_list[:k]
