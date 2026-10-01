@@ -1,28 +1,19 @@
 class Solution:
     def appendCharacters(self, s: str, t: str) -> int:
 
-        # idea: t is a subsequence of s if we can remove some char from s and have t while keeping the same order
-        # the idea is to look for char that are similar keep them and add those are not. 
-        # if i know the number of char that are similar i need to add only t-number of smilar char
 
-        i,j=0,0
-
-        n=len(s)
+        p1,p2=0,0
 
         count=0
 
-        while j<len(t) and i<len(s):
+        while p1<len(s) and p2<len(t):
 
-            if s[i]==t[j]:
+            if s[p1]==t[p2]:
 
-                i+=1
-                j+=1
-                count+=1
+                p1+=1
+                p2+=1
 
             else:
+                p1+=1
 
-                i+=1
-
-        return len(t)-count
-
-            
+        return len(t)-p2
