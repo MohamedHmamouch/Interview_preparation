@@ -1,23 +1,19 @@
 class Solution:
-    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
+    def checkSubarraySum(self, nums: list[int], k: int) -> bool:
+
+        freq={0:-1}
+
+        current=0
+
+        for i,n in enumerate(nums):
+
+            current+=n
+
+            if current%k in freq and i-freq[current%k]>=2:
+
+                return True
 
 
-
-        hash_map={0:-1}
-
-        prefix=0
-        for i, n in enumerate(nums):
-
-            prefix+=n
-
-            remainder=prefix%k
-
-            if remainder in hash_map:
-
-                if i-hash_map[remainder]>=2:
-
-                    return True
-            else:
-                hash_map[remainder]=i
+            freq[current%k]= min(i,freq[current%k]) if current%k in freq else i
 
         return False
