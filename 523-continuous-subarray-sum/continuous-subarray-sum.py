@@ -1,19 +1,24 @@
 class Solution:
     def checkSubarraySum(self, nums: list[int], k: int) -> bool:
 
-        freq={0:-1}
 
-        current=0
 
-        for i,n in enumerate(nums):
+        remainder={0:-1}
+        
+        prefix=0
 
-            current+=n
+        for r in range(len(nums)):
 
-            if current%k in freq and i-freq[current%k]>=2:
+            prefix+=nums[r]
+
+            if prefix%k in remainder and r-remainder[prefix%k]>=2:
 
                 return True
 
+            remainder[prefix%k]=min(r,
 
-            freq[current%k]= min(i,freq[current%k]) if current%k in freq else i
+                remainder.get(prefix%k,float('inf'))
+            
+                )
 
         return False
