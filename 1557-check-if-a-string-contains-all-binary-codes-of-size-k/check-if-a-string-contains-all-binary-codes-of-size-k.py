@@ -14,14 +14,9 @@ class Solution:
 
             right+=1
 
-        print(unique)
-        for i in range(2**k):
 
-            if str(format(i, f"0{k}b")) not in  unique:
 
-                return False
-
-        return True
+        return len(unique)==2**k
 
 
 
