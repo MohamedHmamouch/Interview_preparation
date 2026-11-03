@@ -1,21 +1,20 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
+        
 
+        mapper={0:1}
 
-        freq={0:1}
-
-        current_sum=0
+        prefix=0
 
         count=0
 
-        for n in nums:
+        for i,n in enumerate(nums):
 
-            current_sum+=n
-
-            if current_sum-k in freq:
-
-                count+=freq.get(current_sum-k ,0)
-
-            freq[current_sum]=1+freq.get(current_sum,0)
+            prefix+=n 
+            count+=mapper.get(prefix-k,0)
+            mapper[prefix]=1+mapper.get(prefix,0)
 
         return count
+
+
+        
