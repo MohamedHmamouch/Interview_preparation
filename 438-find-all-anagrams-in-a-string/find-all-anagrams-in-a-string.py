@@ -1,45 +1,44 @@
 class Solution:
     def findAnagrams(self, s: str, p: str) -> list[int]:
 
+        if len(p)>len(s):
 
-        if len(s)<len(p):
             return []
+        p_freq={}
+        s_freq={}
 
-        res=[]
+        for i in range(len(p)):
+            p_freq[p[i]]=1+p_freq.get(p[i],0)
 
-        l=0
+            s_freq[s[i]]=1+s_freq.get(s[i],0)
 
-        scount={}
-        pcount={}
-        for r in range(len(p)):
+        ans=[]
 
-            scount[s[r]]=1+scount.get(s[r],0)
+        if s_freq==p_freq:
 
-            pcount[p[r]]=1+pcount.get(p[r],0)
+            ans.append(0)
 
-
-        if scount==pcount:
-
-            res.append(l)
-
-        l=0
-
-        for r in range(len(p),len(s)):
+        end=len(p)
+        start=0
 
 
-            scount[s[r]]=1+scount.get(s[r],0)
+        while end<len(s):
 
-            scount[s[l]]-=1
+            s_freq[s[end]]=1+s_freq.get(s[end],0)
+            s_freq[s[start]]-=1
 
-            if scount[s[l]]<=0:
 
-                del scount[s[l]]
+            if s_freq[s[start]]<=0:
 
-            
-            l+=1
+                del s_freq[s[start]]
 
-            if scount==pcount:
+            start+=1
+            if s_freq==p_freq:
 
-                res.append(l)
+                ans.append(start)
 
-        return res
+            end+=1
+
+        print(s_freq,p_freq)
+
+        return ans
