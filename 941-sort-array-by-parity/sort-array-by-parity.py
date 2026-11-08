@@ -1,19 +1,28 @@
 class Solution:
-    def sortArrayByParity(self, nums: List[int]) -> List[int]:
-        
+    def sortArrayByParity(self, nums: list[int]) -> list[int]:
 
-        left,right=0,0
+        m=0
 
-        for right in range(len(nums)):
+        ans=[0]*len(nums)
 
-            if nums[right]%2==0 and nums[left]%2!=0:
+        left=0
 
-                nums[left],nums[right]=nums[right],nums[left]
+        right=len(ans)-1
+
+        while left<=right:
+
+            if nums[m]%2==0:
+
+                ans[left]=nums[m]
 
                 left+=1
+            
+            else:
 
-            elif nums[left]%2==0:
+                ans[right]=nums[m]
 
-                left+=1
+                right-=1
 
-        return nums
+            m+=1
+
+        return ans
