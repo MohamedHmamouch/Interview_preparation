@@ -1,41 +1,41 @@
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
+        
 
-
-        p1=1
-
+        p1=0
         p2=0
 
-        s=word1[0]
+        s=""
 
-        altern=True
-        
+        first=True
 
         while p1<len(word1) and p2<len(word2):
 
-            if altern:
 
-                s+=word2[p2]
-
-                altern=False
-
-                p2+=1
-
-            else:
+            if first:
 
                 s+=word1[p1]
 
-                altern=True
-
                 p1+=1
 
-        
-        if p1<len(word1):
+                first=False
 
-            s+=word1[p1:]
+            else:
 
-        elif p2<len(word2):
+                s+=word2[p2]
+                p2+=1
 
-            s+=word2[p2:]
+                first=True
+
+        while p1<len(word1):
+
+            s+=word1[p1]
+            p1+=1
+
+        while p2<len(word2):
+
+            s+=word2[p2]
+
+            p2+=1
 
         return s
