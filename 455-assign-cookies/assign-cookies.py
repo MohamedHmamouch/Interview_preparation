@@ -1,26 +1,26 @@
 class Solution:
-    def findContentChildren(self, g: List[int], s: List[int]) -> int:
-        
+    def findContentChildren(self, g: list[int], s: list[int]) -> int:
+
 
         g.sort()
         s.sort()
+        p1=0
 
-        greed=0
-        size=0
+        p2=0
 
         count=0
 
-        while greed<len(g) and size<len(s):
+        while p1<len(g) and p2<len(s):
 
-
-            if g[greed]<=s[size]:
+            if s[p2]>=g[p1]:
 
                 count+=1
-                greed+=1
-                size+=1
 
-            elif g[greed]>s[size]:
+                p2+=1
+                p1+=1
 
-                size+=1
+            else:
+
+                p2+=1
 
         return count
