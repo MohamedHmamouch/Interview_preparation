@@ -1,24 +1,22 @@
 class Solution:
     def numOfSubarrays(self, arr: list[int]) -> int:
-        even=0
 
-        even_prefix=0
 
-        odd_prefix=0
-
-        mod=10**9 + 7
+        prefix=0
 
         odd=0
 
+        even=0
 
-        current=0
         res=0
+
+        mod=(10**9)+7
 
         for n in arr:
 
-            current+=n
+            prefix+=n%mod
 
-            if current%2==0:
+            if prefix%2==0:
 
                 even+=1
                 res+=odd
@@ -27,8 +25,6 @@ class Solution:
 
                 odd+=1
 
-                res+=even+1
+                res+=1+even
 
-        return res % (10**9 + 7)
-
-                
+        return res%mod
