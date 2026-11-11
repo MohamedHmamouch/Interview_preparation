@@ -1,30 +1,31 @@
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
-        
-        ans=set()
+
 
         nums.sort()
+        s=set()
 
         for i in range(len(nums)):
 
+            total=nums[i]
+
+            start=i
 
             left=i+1
 
-            right=len(nums)-1
-
+            right=len(nums)-1        
 
             while left<right:
 
+                if total+nums[left]+nums[right]==0 and left!=i and right!=i:
 
-                if left!=i and right!=i and nums[left]+nums[right]+nums[i]==0:
-
-                    ans.add((nums[left],nums[right],nums[i]))
+                    s.add((nums[i],nums[left],nums[right]))
 
                     left+=1
 
                     right-=1
 
-                elif nums[left]+nums[right]+nums[i]>0:
+                elif total+nums[left]+nums[right]>0:
 
                     right-=1
 
@@ -33,4 +34,5 @@ class Solution:
 
                     left+=1
 
-        return [list(triplets) for triplets in ans]
+
+        return list(s)
