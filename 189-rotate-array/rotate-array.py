@@ -1,41 +1,36 @@
 class Solution:
-    def rotate(self, nums: List[int], k: int) -> None:
+    def rotate(self, nums: list[int], k: int) -> None:
         """
         Do not return anything, modify nums in-place instead.
         """
-        k=k%len(nums)
 
+
+        
 
         nums.reverse()
 
-        print(nums,k)
-
-        end=k-1
+        k=k%len(nums)
 
         left=0
 
-        while left<end:
+        right=k-1
 
-            nums[left],nums[end]=nums[end],nums[left]
+        while left<=right:
 
-            end-=1
+            nums[left],nums[right]=nums[right],nums[left]
 
             left+=1
+            right-=1
 
-        print(nums,'step1')
         
+
         left=k
-        end=len(nums)-1
 
-        print(left,end)
+        right=len(nums)-1
 
-        while left<end:
+        while left <=right:
 
-            nums[left],nums[end]=nums[end],nums[left]
+            nums[left],nums[right]=nums[right],nums[left]
 
             left+=1
-
-            end-=1
-
-
-        
+            right-=1
