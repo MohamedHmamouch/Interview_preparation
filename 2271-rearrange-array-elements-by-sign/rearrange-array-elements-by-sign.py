@@ -15,43 +15,26 @@ class Solution:
             else:
 
                 positive_numbers.append(n)
+
+
         p1=0
-
-        alter=True
-
         p2=0
+        
 
-        res=[]
+        res=[0]*len(nums)
 
-        while p1<len(neg_numbers) and p2<len(positive_numbers):
+        for i in range(len(res)):
 
-            if alter:
 
-                res.append(positive_numbers[p2])
-                alter=False
+            if i%2==0:
+
+                res[i]=positive_numbers[p2]
+
                 p2+=1
 
             else:
 
-                res.append(neg_numbers[p1])
-
-                alter=True
-
+                res[i]=neg_numbers[p1]
                 p1+=1
 
-
-        while p2<len(positive_numbers):
-
-            res.append(positive_number[p2])
-            p2+=1
-
-        while p1<len(neg_numbers):
-
-            res.append(neg_numbers[p1])
-
-            p1+=1
-
-            
         return res
-
-            
